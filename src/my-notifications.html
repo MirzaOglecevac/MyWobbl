@@ -1,0 +1,75 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<!-- Items -->
+<link rel="import" href="items/notification-card.html">
+
+<dom-module id="my-notifications">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+
+                padding: 10px;
+            }
+        </style>
+
+        <div class="emptyCard">
+            <template is="dom-repeat" items="[[notifications]]" as="notification">
+                <notification-card entry="[[notification]]"></notification-card>
+            </template>
+
+        </div>
+    </template>
+
+    <script>
+        class MyNotifications extends Polymer.Element {
+            static get is() { return 'my-notifications'; }
+
+            static get properties(){
+                return {
+                    notifications:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":null,
+                                "body":"Ut pro iusto philosophia, natum minim ut pro, diam utroque vituperatoribus eu nam. Sale viris his ea, mea tollit causae legimus ex, sit no vide principes. Ad ius lorem nostrum rationibus, cu vix populo electram contentiones. In scaevola phaedrum consequat duo. ",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"FB"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Cum praesent erroribus no, et minimum erroribus prodesset mea. In per quot tritani. Te verear consulatu definitionem duo.",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"YT"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"INSTA"
+                            }
+                        ];},
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(MyNotifications.is, MyNotifications);
+    </script>
+</dom-module>

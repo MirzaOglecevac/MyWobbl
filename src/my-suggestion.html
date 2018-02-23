@@ -1,0 +1,224 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+<!-- Items -->
+<link rel="import" href="items/profile-item.html">
+
+<dom-module id="my-suggestion">
+    <template>
+        <style include="shared-styles">
+
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            #containerSuggestions, #containerExamples {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                min-width: 350px;
+                padding: 10px 10px 0 10px;
+                margin: 0 auto;
+                border-radius: 5px;
+                box-sizing: border-box;
+                background-color: #fff;
+                box-shadow: 0px 4px 4px rgba(180,180,180, 0.6), 2px 2px 1px rgba(180,180,180, 0.6), -2px 2px 1px rgba(180,180,180, 0.6);
+            }
+
+
+
+            #suggestions {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+
+            }
+
+            #examples {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            #container > p {
+                color: #212121;
+                font-family: "Roboto";
+                font-weight: 500;
+                text-align: left;
+            }
+
+
+        </style>
+
+        <div class="emptyCard">
+
+            <div id="containerSuggestions">
+                <p>Suggestions</p>
+                <div id="suggestions">
+                    <template is="dom-repeat" items="[[users]]" as="user">
+                        <profile-item entry="[[user]]"></profile-item>
+                    </template>
+                </div>
+            </div>
+            <br/>
+            <div id="containerExamples">
+                <p>Example preview</p>
+                <div id="examples">
+                    <template is="dom-repeat" items="[[examples]]" as="example">
+                        <profile-item entry="[[example]]"></profile-item>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+
+    </template>
+
+    <script>
+        class MySuggestion extends Polymer.Element {
+            static get is() { return 'my-suggestion'; }
+
+            static get properties(){
+                return {
+                    users:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "user_id": 1,
+                                "image": "https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 2,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 3,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":false,
+                                "searchCard":false
+                            }
+                        ];},
+
+                    },
+                    examples:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "user_id": 1,
+                                "image": "https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 2,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 3,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":false,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 1,
+                                "image": "https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 2,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 3,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":false,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 1,
+                                "image": "https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 2,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":true,
+                                "searchCard":false
+                            },
+                            {
+                                "user_id": 3,
+                                "image":"https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+                                "name":"Mirza Oglecevac",
+                                "followers":500000,
+                                "date":"2018-12-12",
+                                "type":"Influencer",
+                                "reported":false,
+                                "searchCard":false
+                            }
+                        ];},
+
+                    },
+                }
+            }
+        }
+
+        window.customElements.define(MySuggestion.is, MySuggestion);
+    </script>
+</dom-module>

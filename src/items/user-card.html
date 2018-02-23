@@ -1,0 +1,145 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+
+<dom-module id="user-card">
+  <template>
+    <style>
+
+
+		a {
+			text-decoration: none;
+		}
+	  
+	  .user {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+			min-width: 350px;
+			padding: 10px;
+			margin: 0 auto;
+			border-radius: 5px;
+			box-sizing: border-box;
+			background-color: #fff;
+		  	margin-bottom: 15px;
+			box-shadow: 0px 4px 4px rgba(180,180,180, 0.6), 2px 2px 1px rgba(180,180,180, 0.6), -2px 2px 1px rgba(180,180,180, 0.6);
+		    cursor: pointer;
+		}
+
+		.leftSide {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.rightSide {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.leftSide > img {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			margin: 0 10px;
+			border-radius: 50%;
+		}
+
+		.userInfo > p {
+			color: #BDBDBD;
+			font-family: "Roboto";
+			font-weight: 400;
+			padding: 0;
+			margin: 0;
+		}
+
+		p:first-child {
+			font-family: "Roboto";
+			font-weight: 500;
+			color: #212121;
+		}
+
+		.rightSide {
+			display: flex;
+			flex-direction: column;
+
+
+		}
+
+		.rightSide > iron-icon {
+			fill: red;
+			margin-bottom: 15px;
+
+		}
+
+	  .rightSide > #checkbox {
+		  margin: auto 0 auto 3px;
+
+
+	  }
+
+	</style>
+
+
+	  <a href="[[path]]/userdetail/{{entry.user_id}}">
+
+		  <div class="user">
+			<div class="leftSide">
+
+				<!-- If has image -->
+				<template is="dom-if" if="{{entry.image}}">
+					<img src$="{{entry.image}}" alt="Not Found" />
+				</template>
+				<!-- If doens't have image -->
+				<template is="dom-if" if="{{!entry.image}}">
+					<img src="https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg" alt="Not Found" />
+				</template>
+
+				<div class="userInfo">
+					<p>{{entry.name}}</p>
+					<p>{{entry.followers}}</p>
+					<p>{{entry.date}}</p>
+					<p>{{entry.type}}</p>
+				</div>
+			</div>
+
+			<div class="rightSide">
+				<!-- If reported -->
+				<template is="dom-if" if="{{entry.reported}}">
+					<iron-icon icon="report"></iron-icon>
+				</template>
+				<!-- Is Search  -->
+				<template is="dom-if" if="{{entry.searchCard}}">
+					<paper-checkbox id="checkbox"></paper-checkbox>
+				</template>
+
+			</div>
+		</div>
+
+	  </a>
+
+	
+	</template>
+
+	<script>
+
+	class UserCard extends Polymer.Element {
+	  static get is() { return 'user-card'; }
+
+	  static get properties(){
+		return {
+			entry:Object
+
+		}
+	  }
+
+
+
+	}
+
+	window.customElements.define(UserCard.is, UserCard);
+	</script>
+
+</dom-module>

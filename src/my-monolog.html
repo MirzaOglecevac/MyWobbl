@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<!-- Items -->
+<link rel="import" href="items/monolog-card.html">
+
+<dom-module id="my-monolog">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+                cursor: default;
+            }
+        </style>
+
+        <div class="emptyCard">
+            <monolog-card entry="[[logs]]"></monolog-card>
+        </div>
+    </template>
+
+    <script>
+        class MyMonolog extends Polymer.Element {
+            static get is() { return 'my-monolog'; }
+
+            static get properties(){
+                return {
+                    logs: {
+                        type: Array,
+                        value: function(){
+                            return [
+                                {
+                                    "level": "Warning",
+                                    "date": "05-05-2012",
+                                    "message": "Text message..."
+                                },
+                                {
+                                    "level": "Error",
+                                    "date": "08-05-2013",
+                                    "message": "Text message..."
+                                },
+                                {
+                                    "level": "Warning",
+                                    "date": "01-02-2012",
+                                    "message": "Text message..."
+                                }
+                            ]
+
+                        }
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(MyMonolog.is, MyMonolog);
+    </script>
+</dom-module>

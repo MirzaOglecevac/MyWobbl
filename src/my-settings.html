@@ -1,0 +1,29 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-settings">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+
+                padding: 10px;
+            }
+        </style>
+
+        <div class="card">
+            <div class="circle">1</div>
+            <h1>Settings</h1>
+            <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+            <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        </div>
+    </template>
+
+    <script>
+        class MySettings extends Polymer.Element {
+            static get is() { return 'my-settings'; }
+        }
+
+        window.customElements.define(MySettings.is, MySettings);
+    </script>
+</dom-module>

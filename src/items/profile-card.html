@@ -1,0 +1,267 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+
+<dom-module id="profile-card">
+  <template>
+    <style>
+      
+	  #profile {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			width: 100%;
+			min-width: 350px;
+			padding: 10px;
+			margin: 0 auto;
+			border-radius: 5px;
+			box-sizing: border-box;
+			background-color: #fff;
+			box-shadow: 0px 4px 4px rgba(180,180,180, 0.6), 2px 2px 1px rgba(180,180,180, 0.6), -2px 2px 1px rgba(180,180,180, 0.6);
+	   
+	   }
+
+	   /* User info part */
+	   
+	   #profile > .userInfo {
+		display: flex;
+		justify-content: space-between;
+	   }
+	   
+	   #profile .userInfo .leftSide {
+		 display: flex;
+		 flex-direction: row;
+		 
+	   }
+	   
+	   #profile .userInfo .leftSide p {
+		 margin: 0;
+		 padding: 0;
+	   }
+	   
+	   #profile .userInfo .leftSide p:first-child {
+		 font-weight: 500;
+		   color: #212121;
+		   font-family: "Roboto";
+	   }
+
+
+	  .leftSide > div > p {
+		  color: #BDBDBD;
+		  font-family: "Roboto";
+		  font-weight: 400;
+	  }
+	   
+	   #profile #profileImage {
+			display: inline-block;
+			width: 110px;
+			height: 110px;
+			margin: 0 10px;
+			border-radius: 50%;
+	   }
+	   
+	   #profile .userInfo .leftSide .socialIcons img {
+	     display: inline-block;
+		 margin: 10px 10px 0 0;
+		 cursor: pointer;
+	   }
+
+	   iron-icon {
+		   color: #666;
+		   cursor: pointer;
+	   }
+	   
+
+	   
+	   /* User bio part */
+	   
+	   
+	   /* User links part */
+	   
+	   #profile .userLinks {
+			display: flex;
+			justify-content: space-between;
+		}
+
+	  #profile .userLinks iron-icon {
+		 align-self: flex-end;
+	  }
+	   
+	   #profile .userLinks .buttons {
+		padding-top: 10px;
+		   display: flex;
+		   flex-direction: row;
+	   }
+	   
+	   #profile .userLinks .buttons paper-button {
+		width: 90px;
+		height: 30px;
+		text-transform: none;
+		 color: #212121;
+		font-size: 12px;
+		box-shadow: 0px 2px 2px rgba(180,180,180, 0.6), 1px 1px 1px rgba(180,180,180, 0.6);
+	   }
+	   
+	   #profile .buttons #patreon {
+		background-color: #E64A19;
+	   }
+	   
+	   #profile .buttons #shop {
+		background-color: #42A5F5;
+	   }
+
+	   #deleteIcon {
+		   padding-bottom: 5px;
+	   }
+
+	   .inactive {
+		   opacity: 0.54 !important;
+	   }
+	   
+	   /* Style for dependencies */
+	   
+	   paper-textarea {
+		padding: 0 10px;
+		margin: 0;
+		font-family: "Roboto";
+		color: #212121;
+	   }
+
+
+	  
+	  
+    </style>
+   
+	
+	<div id="profile">
+		
+		<div class="userInfo">
+			<div class="leftSide">
+				<img id="profileImage" src$={{entry.profileImage}} alt="Not Found" />
+				<div>
+					<p>{{entry.profileName}}</p>
+					<p>{{entry.followers}}</p>
+					<p>{{entry.type}}</p>
+					<div class="socialIcons">
+						<img id="facebook" src="../../images/icons/facebook.svg" on-click="_openSocialDialog"/>
+						<img id="instagram" src="../../images/icons/instagram.svg" on-click="_openSocialDialog"/>
+						<img id="twitter" src="../../images/icons/twitter.svg" on-click="_openSocialDialog"/>
+						<img id="youtube" src="../../images/icons/youtube.svg" on-click="_openSocialDialog"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="rightSide">
+				<iron-icon icon="check-circle" on-click="_verifyUser"></iron-icon>
+			</div>
+
+		</div>
+		
+		<div class="userBio">
+			<paper-textarea value="{{entry.userBio}}"></paper-textarea>
+		</div>
+		
+		<div class="userLinks">
+		  <div class="buttons">
+
+			 <template is="dom-if" if="{{entry.external.0.patreon}}">
+				<paper-button id="patreon" on-click="_openExternalLinkDialog"><img id="patreonIcon" src="../../images/icons/patreon.svg"/></paper-button>
+			 </template>
+
+			  <template is="dom-if" if="{{!entry.external.0.patreon}}">
+				  <paper-button id="patreon"  on-click="_openExternalLinkDialog"class="inactive"><img id="patreonIcon" src="../../images/icons/patreon.svg"/></paper-button>
+			  </template>
+
+
+			  <template is="dom-if" if="{{entry.external.1.shop}}">
+			  	<paper-button id="shop" on-click="_openExternalLinkDialog"><img id="shopIcon" src="../../images/icons/shop.svg"/></paper-button>
+			  </template>
+
+			  <template is="dom-if" if="{{!entry.external.1.shop}}">
+				  <paper-button id="shop" on-click="_openExternalLinkDialog" class="inactive"><img id="shopIcon" src="../../images/icons/shop.svg"/></paper-button>
+			  </template>
+
+
+			 <template is="dom-if" if="{{entry.external.2.other}}">
+				<paper-button class="thirdLink" on-click="_openExternalLinkDialog">{{entry.external.2.other}}</paper-button>
+			 </template>
+
+			  <template is="dom-if" if="{{!entry.external.2.other}}">
+				  <paper-button class="thirdLink" on-click="_openExternalLinkDialog" id="thirdLinkFull"><img id="addIcon" src="../../images/icons/add.svg"/></paper-button>
+			  </template>
+
+		  </div>
+			<iron-icon id="deleteIcon" icon="delete" on-click="_deleteUser"></iron-icon>
+		</div>
+		
+	</div>
+	
+	
+	
+	</template>
+  <script>
+    
+    class ProfileCard extends Polymer.Element {
+      static get is() { return 'profile-card'; }
+	  
+	  static get properties(){
+		return {
+			image: {
+				type: String,
+				value: "/bower_components/content-card/homer.jpg"
+			},
+			username: {
+				type: String,
+				value: "Username"
+			},
+			followers: {
+				type: String,
+				value: "Followers"
+			},
+			type: {
+				type: String,
+				value: "Type"
+			},
+			userBio: {
+				type: String,
+				value: "User Bio"
+			}
+			
+		}
+	  }
+
+	  _verifyUser(){
+		  this.dispatchEvent(new CustomEvent('verify-user', {
+          bubbles: true, composed: true, detail: {
+            text: "Are you sure you want to mark this user as verified?"
+          }}));
+	  }
+
+	  _openSocialDialog(){
+          console.log("Social Dialog Opened.");
+		  this.dispatchEvent(new CustomEvent('open-social-dialog', {
+          bubbles: true, composed: true, detail: {
+            text: "Are you sure you want to delete this user?"
+          }}));
+	  }
+
+	  _openExternalLinkDialog(){
+          console.log("External Dialog Opened.");
+	  }
+
+	  _deleteUser(){
+		  this.dispatchEvent(new CustomEvent('delete-user', {
+          bubbles: true, composed: true, detail: {
+            text: "Are you sure you want to delete this user?"
+          }}));
+	  }
+      
+    }
+
+    window.customElements.define(ProfileCard.is, ProfileCard);
+  </script>
+</dom-module>

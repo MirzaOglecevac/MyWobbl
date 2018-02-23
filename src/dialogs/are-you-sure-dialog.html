@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="are-you-sure-dialog">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            .button-holder{
+                float: right;
+                padding-bottom: 10px;
+            }
+
+            paper-button.yes {
+                background-color: var(--paper-deep-orange-a700);
+                color: white;
+            }
+
+        </style>
+
+
+        <h1>Are you sure?</h1>
+        <p>[[entry.text]]</p>
+        <!--<p>When you use Google services, you trust us with your information. This Privacy Policy is meant to help you understand what data we collect, why we collect it, and what we do with </p>-->
+
+        <div class="button-holder">
+            <paper-button on-click="_no">NO</paper-button>
+            <paper-button class="yes" on-click="_yes">Yes</paper-button>
+        </div>
+
+
+    </template>
+
+    <script>
+        class SureDialog extends Polymer.Element {
+            static get is() { return 'are-you-sure-dialog'; }
+
+            static get properties(){
+                return {
+                    entry:Object
+                }
+            }
+
+            _no() {
+                console.log('No');
+				
+            }
+
+            _yes() {
+                console.log('Yes');
+            }
+        }
+
+        window.customElements.define(SureDialog.is, SureDialog);
+    </script>
+</dom-module>

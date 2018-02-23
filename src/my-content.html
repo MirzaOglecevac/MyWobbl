@@ -1,0 +1,109 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<!-- Imports -->
+<link rel="import" href="items/content-card.html">
+<link rel="import" href="items/filter-menu.html">
+
+<dom-module id="my-content">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+
+                padding: 10px;
+            }
+
+            .emptyCard {
+                margin-right: 164px;
+            }
+
+
+        </style>
+
+        <div class="emptyCard">
+            <template is="dom-repeat" items="[[contentItems]]" as="contentItem">
+                <content-card entry="[[contentItem]]"></content-card>
+            </template>
+
+            <filter-menu entry="[[filterMenuItems]]"></filter-menu>
+
+        </div>
+
+    </template>
+
+    <script>
+        class MyContent extends Polymer.Element {
+            static get is() { return 'my-content'; }
+
+            static get properties() {
+                return {
+                    contentItems:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":null,
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"FB"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"YT"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"INSTA"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"TWIT"
+                            }
+                        ];}
+                    },
+                    filterMenuItems:{
+                        type:Array,
+                        value : function(){return [
+                            {"title":"All"},
+                            {"title":"Most popular"},
+                            {"title":"Wobbl popular"},
+                            {"title":"Newest"},
+                            {"title":"Reported"}
+                        ];}
+                    }
+                }
+            }
+
+
+
+        }
+
+        window.customElements.define(MyContent.is, MyContent);
+    </script>
+</dom-module>

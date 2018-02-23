@@ -1,0 +1,79 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<script src="background/viewModels/statisticsVM.js"></script>
+<script src="background/models/statisticsModel.js"></script>
+
+<!-- Items -->
+<link rel="import" href="items/statistics-item.html">
+
+<dom-module id="my-statistics">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            div.grid {
+                display:block;
+                width:100%;
+                height:auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            div.grid statistics-item{
+                display:block;
+                float:left;
+                margin:0 10px 10px 0;
+                padding:10px;
+            }
+
+        </style>
+
+        <iron-ajax
+                id="ironAjax"
+                handle-as="json"
+                debounce-duration="300"></iron-ajax>
+
+
+        <div class="grid">
+            <template id="statisticsMenu" is="dom-repeat" items="[[statisticItems]]" as="statisticItem">
+                
+                    <statistics-item entry="[[statisticItem]]"></statistics-item>
+
+            </template>
+        </div>
+
+
+    </template>
+
+    <script>
+        class MyStatistics extends StatisticsVM(Polymer.Element, StatisticsModel) {
+
+            static get is() { return 'my-statistics'; }
+
+            static get properties() {
+                return {
+                    statisticItems: {
+                        type:Array,
+                        observer: '_onStatisticsModelChange'
+                    }
+                }
+            }
+
+            ready() {
+                super.ready();
+                // call bind
+                this.bind(this.$.statisticsMenu, this.$.ironAjax);
+            }
+
+        }
+
+        window.customElements.define(MyStatistics.is, MyStatistics);
+    </script>
+</dom-module>

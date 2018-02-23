@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-search/paper-search.html">
+<link rel="import" href="../../bower_components/user-card/user-card.html">
+
+
+<dom-module id="search-dialogbox">
+  <template>
+    <style>
+      
+	  
+	  #searchDialogbox {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 100%;
+			min-width: 350px;
+			padding: 10px;
+			margin: 0 auto;
+			border-radius: 5px;
+			box-sizing: border-box;
+			background-color: #fff;
+			box-shadow: 0px 4px 4px rgba(180,180,180, 0.6), 2px 2px 1px rgba(180,180,180, 0.6), -2px 2px 1px rgba(180,180,180, 0.6);
+		}
+
+        paper-search-bar {
+            width: 100% !important;
+            box-shadow: 0px 2px 2px rgba(180,180,180, 0.6), 1px 1px 1px rgba(180,180,180, 0.6), -2px 2px 1px rgba(180,180,180, 0.6);
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+   
+	
+	<div id="searchDialogbox">
+
+		<paper-search-bar hide-filter-button="true"></paper-search-bar>
+        <user-card></user-card>
+	</div>
+	
+	
+	</template>
+  <script>
+    
+    class SearchDialogbox extends Polymer.Element {
+      static get is() { return 'search-dialogbox'; }
+	  
+	  static get properties(){
+		return {
+
+		}
+
+
+	  }
+
+
+        ready(){
+            super.ready();
+
+        }
+      
+    }
+
+    window.customElements.define(SearchDialogbox.is, SearchDialogbox);
+  </script>
+</dom-module>

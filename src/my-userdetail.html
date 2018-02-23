@@ -1,0 +1,139 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="shared-styles.html">
+
+
+<!-- Items -->
+<link rel="import" href="items/profile-card.html">
+<link rel="import" href="items/report-card.html">
+<link rel="import" href="items/content-card.html">
+
+<dom-module id="my-userdetail">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            .emptyCard {
+                width: 60%;
+                margin: 0 auto;
+            }
+
+        </style>
+
+
+        <app-route
+                route="{{route}}"
+                pattern="/:id"
+                data="{{routeData}}">
+        </app-route>
+
+        <div class="emptyCard">
+                 <profile-card entry="[[profileInfo]]"></profile-card><br/>
+                 <report-card entry="[[profileInfo]]"></report-card><br/>
+                <template is="dom-repeat" items="[[contentItems]]" as="contentItem">
+                    <content-card entry="[[contentItem]]"></content-card>
+                </template>
+        </div>
+
+
+    </template>
+
+    <script>
+        class MyUserdetail extends Polymer.Element {
+            static get is() { return 'my-userdetail'; }
+
+            static get properties() {
+                return {
+                    profileInfo: {
+                        type: Object,
+                        value: {
+                            "profileImage": "http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                            "profileName": "Arslan Hajdarevic",
+                            "followers": 100000000,
+                            "type": "Influencer",
+                            "userBio": "Ipsum",
+                            "reported": "Y",
+                            "reportText": "This user has...",
+                            "external": [
+                                {"patreon": "www.patreon.com"},
+                                {"shop": null},
+                                {"other": null}
+                            ]
+                        }
+                    },
+                    contentItems:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":null,
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"FB"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"YT"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"INSTA"
+                            },
+                            {
+                                "userImage":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "userName":"Some name",
+                                "date":"2018-20-20",
+                                "media":"http://static3.uk.businessinsider.com/image/589a1765dd0895cb6e8b49f8-1200/.jpg",
+                                "body":"Some body",
+                                "likes":121,
+                                "comments":12,
+                                "shares":12,
+                                "type":"TWIT"
+                            }
+                        ];},
+                    }
+                }
+            }
+
+
+            static get observers(){
+                return [
+                    '_itemChanged()'
+                ]
+            }
+
+            _itemChanged(){
+                console.log("Id: " + this.routeData.id);
+                this.id = this.routeData.id;
+            }
+
+
+
+
+        }
+
+        window.customElements.define(MyUserdetail.is, MyUserdetail);
+    </script>
+</dom-module>

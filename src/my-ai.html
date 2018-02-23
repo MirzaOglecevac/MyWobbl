@@ -1,0 +1,90 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<!-- Items -->
+<link rel="import" href="items/merge-card.html">
+
+<dom-module id="my-ai">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+
+                padding: 10px;
+            }
+        </style>
+
+        <div class="emptyCard">
+            <template is="dom-repeat" items="[[mergeUsers]]" as="mergeUser">
+                <merge-card entry="[[mergeUser]]"></merge-card>
+            </template>
+        </div>
+
+    </template>
+
+    <script>
+        class MyAI extends Polymer.Element {
+            static get is() { return 'my-ai'; }
+
+            static get properties() {
+                return {
+                    mergeUsers:{
+                        type:Array,
+                        value : function(){return [
+                            {
+                                "profile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                },
+                                "subprofile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                }
+                            },
+                            {
+                                "profile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                },
+                                "subprofile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                }
+                            },
+                            {
+                                "profile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                },
+                                "subprofile":{
+                                    "username":"User Name",
+                                    "image":"https://pixel.nymag.com/imgs/fashion/daily/2017/10/02/02-Rupi-Kaur.w512.h600.2x.jpg",
+                                    "followers":1000,
+                                    "platform":"YT",
+                                    "link":"link"
+                                }
+                            }
+                        ];}
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(MyAI.is, MyAI);
+    </script>
+</dom-module>
